@@ -32,15 +32,17 @@
 				<input type="text" class="form-control" placeholder="Lengte (CM)" id="height">
 				<span class="ion ion-log-in form-control-feedback "></span>
 			  </div>
+<!-- Changes so you can either select Male or Female but not both. -NinjaMuffin08 -->
 			  <div class="row">
 				<div class="col-12">
 				  <div class="checkbox">
-					<input type="checkbox" id="sex1"  value="M">
-					<label for="sex1">Man</label> &nbsp;&nbsp;&nbsp;
-					<input type="checkbox" id="sex2" value="F">
-					<label for="sex2">Vrouw</label>
+					
+					<input id="sex1" name="sex" type="checkbox" onclick="toggleRadioCheckbox(this)"/><label for="sex1">Male</label>
+					<input id="sex2" name="sex" type="checkbox" onclick="toggleRadioCheckbox(this)"/><label for="sex2">Female</label>
+				
 				  </div>
 				</div>
+					
 				<!-- /.col -->
 				<div class="col-12 text-center">
 				  <button type="submit" class="btn btn-block mt-10 btn-success">Registreren</button>
@@ -52,11 +54,18 @@
 		</div>
 	
 	</div>
-	<script src="js/script.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script>
-		$('input[type="checkbox"]').on('change', function() {
-	 	$('input[type="checkbox"]').not(this).prop('checked', false);
-		});
+   function toggleRadioCheckbox(sender) {
+        // RadioCheckbox: 0..1 enabled in a group 
+        if (!sender.checked) return;
+        var fields = document.getElementsByName(sender.name);
+        for(var idx=0; idx<fields.length; idx++) {
+            var field = fields[idx];
+            if (field.checked && field!=sender)
+                field.checked=false;
+        }
+    };
 	</script>
 
 </body>
